@@ -48,3 +48,4 @@ export default tseslint.config({
   },
 })
 ```
+# explo-face-detection
