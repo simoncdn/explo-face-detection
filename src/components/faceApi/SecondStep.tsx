@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function SecondStep({ image, imageRef, canvasRef }: Props) {
-  const { showContent, toggleShowContent } = useDisplayContent();
+  const { showContent } = useDisplayContent();
 
   return (
     <div className="relative w-[33vw] h-full flex flex-col items-center px-8 py-4 gap-6 pt-40">
