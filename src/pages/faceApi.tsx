@@ -70,16 +70,20 @@ export default function FaceApi() {
     faceData?.forEach((face) => {
       const { left, right, top, bottom } = face.relativeBox;
       const pointerDimension = {
-        x: left * canvas.width + ((right - left) * canvas.width) / 2,
-        y: top * canvas.height + ((bottom - top) * canvas.height) / 2,
+        x:
+          left * (canvas?.width as number) +
+          ((right - left) * (canvas?.width as number)) / 2,
+        y:
+          top * (canvas?.height as number) +
+          ((bottom - top) * (canvas?.height as number)) / 2,
         w: 10,
         h: 10,
       };
       const strokeDimension = {
-        x: left * canvas.width,
-        y: top * canvas.height,
-        w: (right - left) * canvas.width,
-        h: (bottom - top) * canvas.height,
+        x: left * (canvas?.width as number),
+        y: top * (canvas?.height as number),
+        w: (right - left) * (canvas?.width as number),
+        h: (bottom - top) * (canvas?.height as number),
       };
       createCanvasRect(ctx, "red", pointerDimension);
       createCanvasRectStroke(ctx, "orange", strokeDimension);
@@ -120,8 +124,8 @@ export default function FaceApi() {
     const midPointDimension = getMidPointDimension();
     if (!midPointDimension.x || !midPointDimension.y) return;
     const midPoint = {
-      x: midPointDimension.x * canvas.width,
-      y: midPointDimension.y * canvas.height,
+      x: midPointDimension.x * (canvas?.width as number),
+      y: midPointDimension.y * (canvas?.height as number),
       w: 10,
       h: 10,
     };

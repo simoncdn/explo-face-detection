@@ -10,10 +10,6 @@ const navItems = [
     name: "face-api",
     link: "/face-api",
   },
-  {
-    name: "tensor-flow",
-    link: "/tensor-flow",
-  },
 ];
 export default function Layout() {
   const location = useLocation();
