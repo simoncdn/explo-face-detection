@@ -42,8 +42,6 @@ export default function FaceApi() {
     }
   }, [imageRef]);
 
-  // INIT WEB WORKER
-
   useEffect(() => {
     const canvas = canvasRef.current;
     const currentImage = imageRef.current;

@@ -11,7 +11,7 @@ export function createCanvasRectStroke(
   dimension: AreaDimension,
 ) {
   ctx.beginPath();
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 2;
   ctx.strokeStyle = color;
   ctx.rect(dimension?.x, dimension?.y, dimension?.w, dimension?.h);
   ctx.stroke();
@@ -27,4 +27,3 @@ export function createCanvasRect(
   ctx.rect(dimension?.x, dimension?.y, dimension?.w, dimension?.h);
   ctx.fill();
 }
-

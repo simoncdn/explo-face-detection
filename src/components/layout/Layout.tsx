@@ -6,9 +6,13 @@ const navItems = [
     name: "Metadata",
     link: "/xmp",
   },
+  // {
+  //   name: "face-api",
+  //   link: "/face-api",
+  // },
   {
-    name: "face-api",
-    link: "/face-api",
+    name: "tensorFlow",
+    link: "/tensorFlow",
   },
 ];
 export default function Layout() {

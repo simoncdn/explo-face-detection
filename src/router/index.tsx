@@ -1,5 +1,5 @@
 import App from "@/App";
-import FaceApi from "@/pages/faceApi";
+import TensorFlow from "@/pages/tensorFlow";
 import XmpMetadata from "@/pages/xmpMetadata";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -12,9 +12,13 @@ const router = createBrowserRouter([
         path: "/xmp",
         element: <XmpMetadata />,
       },
+      // {
+      //   path: "/face-api",
+      //   element: <FaceApi />,
+      // },
       {
-        path: "/face-api",
-        element: <FaceApi />,
+        path: "/tensorFlow",
+        element: <TensorFlow />,
       },
     ],
   },
