@@ -10,16 +10,35 @@ import {
 } from "@/lib/getPointerDimension";
 import { useEffect, useRef, useState } from "react";
 
+export type Area = {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+};
+
+export type RegionList = {
+  Area: Area;
+};
+
+export type Region = {
+  RegionList: RegionList | RegionList[];
+};
+
+export type ImageMetadata = {
+  Regions: Region;
+};
+
 export default function XmpMetadata() {
   const [image, setImage] = useState<File>();
-  const [imageMetadata, setImageMetadata] = useState();
+  const [imageMetadata, setImageMetadata] = useState<ImageMetadata>();
   const [orientation, setOrientation] = useState<Orientation>();
   const [translateY, setTranslateY] = useState(0);
   const [displayCrop, setDisplayCrop] = useState(false);
   const [animate, setAnimate] = useState(false);
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const previewRef = useRef();
+  const canvasRef = useRef<HTMLCanvasElement>();
+  const previewRef = useRef<HTMLImageElement>();
 
   function displayCropZone() {
     setDisplayCrop((prev) => !prev);
@@ -63,11 +82,13 @@ export default function XmpMetadata() {
     }
   }
 
-  function getMidPointDimension(regionAreas: Any[]) {
+  function getMidPointDimension(regionAreas: RegionList[]) {
     const midPointX: number = regionAreas.reduce((acc, region) => {
+      if (!region.Area) return acc;
       return acc + region.Area.x / regionAreas.length;
     }, 0);
     const midPointY: number = regionAreas.reduce((acc, region) => {
+      if (!region.Area) return acc;
       return acc + region.Area.y / regionAreas.length;
     }, 0);
     return {
@@ -93,19 +114,20 @@ export default function XmpMetadata() {
     if (regionAreas) {
       regionAreas?.map((region) => {
         console.log("Orientation =", orientation);
+        if (!region?.Area) return;
         let pointerDimension: AreaDimension;
 
         if (orientation === Orientation.VERTICAL) {
           pointerDimension = getPointerVerticalDimension(
-            region?.Area,
-            canvas.width,
-            canvas.height,
+            region.Area,
+            canvas?.width as number,
+            canvas?.height as number,
           );
         } else {
           pointerDimension = getPointerHorizontalDimension(
-            region?.Area,
-            canvas.width,
-            canvas.height,
+            region.Area,
+            canvas?.width as number,
+            canvas?.height as number,
           );
         }
 
@@ -136,7 +158,7 @@ export default function XmpMetadata() {
       : [regions?.RegionList];
 
     let midPointDimension: AreaDimension;
-    const midPoint = getMidPointDimension(regionAreas);
+    const midPoint = getMidPointDimension(regionAreas as RegionList[]);
     getTranslateY(midPoint.x);
 
     if (orientation === Orientation.VERTICAL) {
@@ -166,8 +188,8 @@ export default function XmpMetadata() {
     img.src = URL.createObjectURL(image);
 
     img.onload = () => {
-      canvas.width = imageRef!.clientWidth;
-      canvas.height = imageRef!.clientHeight;
+      canvas.width = imageRef.clientWidth;
+      canvas.height = imageRef.clientHeight;
     };
   }, [canvasRef, image]);
   return (
