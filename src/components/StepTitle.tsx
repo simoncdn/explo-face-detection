@@ -3,7 +3,6 @@ import clsx from "clsx";
 type Props = {
   stepNumber: number;
   title: string;
-  showContent: boolean;
 };
 
 export default function StepTitle({ stepNumber, title }: Props) {

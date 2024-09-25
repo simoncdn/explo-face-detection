@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 import StepTitle from "./StepTitle";
 import { Button } from "./ui/button";
-import { useToast } from "@/hooks/use-toast";
 import {
   Select,
   SelectContent,
@@ -20,11 +19,7 @@ type Props = {
 export default function FirstStep({ image, onAddImage, addModel }: Props) {
   return (
     <div className="w-[33vw] h-full flex flex-col items-center px-8 py-4 gap-10 pt-40">
-      <StepTitle
-        stepNumber={1}
-        title="Choose model and import a photo"
-        showContent
-      />
+      <StepTitle stepNumber={1} title="Choose model and import a photo" />
 
       <div className="flex flex-col gap-4 w-full max-w-80 mt-24 justify-center">
         <Select onValueChange={(value) => addModel(value)}>
