@@ -6,16 +6,11 @@ type Props = {
   showContent: boolean;
 };
 
-export default function StepTitle({ stepNumber, title, showContent }: Props) {
+export default function StepTitle({ stepNumber, title }: Props) {
   return (
-    <h2
-      className={clsx(
-        "text-3xl flex gap-2",
-        showContent ? "opacity-1" : "opacity-0",
-      )}
-    >
-      <span className="font-bold underline">Step {stepNumber}: </span>
-      <span>{title}</span>
+    <h2 className={clsx("text-2xl flex gap-4 flex-col items-center")}>
+      <span className="font-bold underline">STEP {stepNumber}</span>
+      <span className="italic">{title}</span>
     </h2>
   );
 }

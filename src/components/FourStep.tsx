@@ -1,5 +1,3 @@
-import useDisplayContent from "@/hooks/useDisplayContent";
-import StepButton from "./StepButton";
 import StepTitle from "./StepTitle";
 import { Button } from "./ui/button";
 import { clsx } from "clsx";
@@ -11,7 +9,6 @@ type Props = {
   transformY?: number;
   displayCrop?: boolean;
   animate?: boolean;
-  getFacePosition: () => void;
   getMidPoint: () => void;
   displayCropZone: () => void;
   animateCropZone: () => void;
@@ -23,18 +20,11 @@ export default function FourStep({
   transformY,
   displayCrop,
   animate,
-  getFacePosition,
   getMidPoint,
   displayCropZone,
   animateCropZone,
 }: Props) {
-  const { showContent, toggleShowContent } = useDisplayContent();
-
   const buttons = [
-    {
-      label: "Face position",
-      onClick: () => getFacePosition(),
-    },
     {
       label: "Mid point",
       onClick: () => getMidPoint(),
@@ -51,22 +41,9 @@ export default function FourStep({
 
   return (
     <div className="relative w-[33%] h-full flex flex-col items-center px-8 py-4 gap-6 pt-40">
-      <StepButton
-        showContent={showContent}
-        toggleShowContent={toggleShowContent}
-      />
-      <StepTitle
-        stepNumber={3}
-        title="Auto crop the image"
-        showContent={showContent}
-      />
+      <StepTitle stepNumber={2} title="Detection and adjustment" />
 
-      <div
-        className={clsx(
-          "relative flex justify-center items-center",
-          showContent ? "opacity-1" : "opacity-0",
-        )}
-      >
+      <div className={clsx("relative flex justify-center items-center")}>
         {displayCrop && (
           <div
             className={clsx(
@@ -95,12 +72,7 @@ export default function FourStep({
         )}
       </div>
 
-      <div
-        className={clsx(
-          "flex flex-wrap gap-2",
-          showContent ? "opacity-1" : "opacity-0",
-        )}
-      >
+      <div className={clsx("flex flex-wrap gap-2")}>
         {buttons.map((button, index) => (
           <Button
             variant="secondary"
