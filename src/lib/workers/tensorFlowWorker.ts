@@ -84,7 +84,8 @@ onmessage = async (e) => {
   } catch (error) {
     postMessage({
       type: "error",
-      message: error.message!,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      message: (error as any).message!,
     });
   }
 };

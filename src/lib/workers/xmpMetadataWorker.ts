@@ -1,10 +1,5 @@
 import * as exifr from "exifr";
-import { AreaDimension } from "../createCanvas";
 import { DetectedObject } from "@/hooks/useModelWorker";
-import {
-  getPointerHorizontalDimension,
-  getPointerVerticalDimension,
-} from "../getPointerDimension";
 
 export type Area = {
   x: number;

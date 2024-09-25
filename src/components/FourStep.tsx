@@ -1,5 +1,4 @@
 import StepTitle from "./StepTitle";
-import { Button } from "./ui/button";
 import { clsx } from "clsx";
 
 type Props = {
@@ -20,25 +19,7 @@ export default function FourStep({
   transformY,
   displayCrop,
   animate,
-  getMidPoint,
-  displayCropZone,
-  animateCropZone,
 }: Props) {
-  const buttons = [
-    {
-      label: "Mid point",
-      onClick: () => getMidPoint(),
-    },
-    {
-      label: "Display crop zone",
-      onClick: displayCropZone,
-    },
-    {
-      label: "Auto crop",
-      onClick: animateCropZone,
-    },
-  ];
-
   return (
     <div className="relative w-[33%] h-full flex flex-col items-center px-8 py-4 gap-6 pt-40">
       <StepTitle stepNumber={2} title="Detection and adjustment" />
@@ -70,18 +51,6 @@ export default function FourStep({
         ) : (
           <h2>Error</h2>
         )}
-      </div>
-
-      <div className={clsx("flex flex-wrap gap-2")}>
-        {buttons.map((button, index) => (
-          <Button
-            variant="secondary"
-            key={`${button.label} + ${index}`}
-            onClick={button.onClick}
-          >
-            {button.label}
-          </Button>
-        ))}
       </div>
     </div>
   );

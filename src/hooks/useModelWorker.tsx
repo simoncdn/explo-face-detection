@@ -1,5 +1,5 @@
 import { Model } from "@/constant/model";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type UseModelWorkerProps = {
   model: Model | undefined;

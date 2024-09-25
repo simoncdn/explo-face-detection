@@ -45,8 +45,8 @@ async function getObjectInfo(
   const objectsInfo: DetectedObject[] = detectedFaces.map((face) => {
     const { probability, topLeft, bottomRight } = face;
     const faceProbality = Number(probability?.toString()) || 0;
-    const [x, y] = topLeft;
-    const [bottom, right] = bottomRight;
+    const [x, y] = topLeft as [number, number];
+    const [bottom, right] = bottomRight as [number, number];
 
     const width = right - y;
     const height = bottom - x;
@@ -89,7 +89,8 @@ onmessage = async (e) => {
   } catch (error) {
     postMessage({
       type: "error",
-      message: error.message!,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      message: (error as any).message,
     });
   }
 };
