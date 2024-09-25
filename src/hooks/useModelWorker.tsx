@@ -35,9 +35,7 @@ export default function useModelWorker({ model }: UseModelWorkerProps) {
   // Worker Init
   useEffect(() => {
     if (!model) return;
-    const modelWorker = new Worker(new URL(model.workerPath, import.meta.url), {
-      type: "module",
-    });
+    const modelWorker = new model.Worker();
 
     modelWorkerRef.current = modelWorker;
 

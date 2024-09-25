@@ -1,28 +1,37 @@
+import BlazefaceWorker from "../lib/workers/blazefaceWorker?worker";
+import XmpMetadataWorker from "../lib/workers/xmpMetadataWorker?worker";
+import TensorFlowWorker from "../lib/workers/tensorFlowWorker?worker";
+import MediaPipeFaceDetector from "../lib/workers/mediaPipeFaceDetector?worker";
+
+interface WorkerConstructor {
+  new (options?: { name?: string }): Worker;
+}
+
 export type Model = {
   id: string;
   name: string;
-  workerPath: string;
+  Worker: WorkerConstructor;
 };
 
 export const models: Model[] = [
   {
     id: crypto.randomUUID(),
     name: "Xmp metadata",
-    workerPath: "../lib/workers/xmpMetadataWorker.ts",
+    Worker: XmpMetadataWorker,
   },
   {
     id: crypto.randomUUID(),
     name: "TensorFlow - Object detection",
-    workerPath: "../lib/workers/tensorFlowWorker.ts",
+    Worker: TensorFlowWorker,
   },
   {
     id: crypto.randomUUID(),
     name: "TensorFlow - Single Face detection",
-    workerPath: "../lib/workers/mediaPipeFaceDetector.ts",
+    Worker: MediaPipeFaceDetector,
   },
   {
     id: crypto.randomUUID(),
     name: "Blazeface - Multiple Face detection",
-    workerPath: "../lib/workers/blazefaceWorker.ts",
+    Worker: BlazefaceWorker,
   },
 ];
